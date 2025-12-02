@@ -17,6 +17,9 @@ bird-species-detection/<br>
 ├── esp32_cam-setup/<br>
 │   ├── esp-cam-setup.ino/<br>
 │<br>
+├── xiao_esp32s3_setup/<br>
+│   ├── xiao-esp32s3-setup.ino/<br>
+│<br>
 ├── src/<br>
 │   ├── models/<br>
 │   │   ├── birdclassifier95.keras (to be downloaded, see instructions below)<br>
