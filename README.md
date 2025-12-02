@@ -24,6 +24,9 @@ bird-species-detection/<br>
 │   ├── bird_detected_esp.csv<br>
 │   ├── detect_with_webcam.py<br>
 │   ├── detect_with_esp32.py<br>
+|   ├── server.py<br>
+|   ├── templates<br>
+|   |   ├── index.html<br>
 │<br>
 ├── README.md<br>
 ├── LICENSE<br>
@@ -49,6 +52,9 @@ bird-species-detection/<br>
 * Libraries for ESP32 Cam:
     * http://arduino.esp8266.com/stable/package_esp8266com_index.json
     * https://dl.espressif.com/dl/package_esp32_index.json 
+* To run server.py you will need to:
+    * pip install flask tensorflow opencv-python requests
+    * If you already have some libraries pip will not install them.
 
 ### Dataset
 1. Download the dataset from Kaggle: [Kaggle Dataset Link](https://www.kaggle.com/datasets/ichhadhari/indian-birds)
@@ -91,3 +97,11 @@ To use the pre-trained model:
 * Dataset: [Kaggle Dataset](https://www.kaggle.com/datasets/ichhadhari/indian-birds)
 * CNN Model Training: [Youtube](https://www.youtube.com/watch?v=jztwpsIzEGc)
 * ESP32 Cam Setup: [Youtube](https://www.youtube.com/watch?v=A1SPJSVra9I&t=305s) 
+
+### Update to use with XIAO ESP32S3 board
+* Paste the code in xiao_esp32s3_setup/xiao-esp32s3-setup.ino into Arduino IDE, select the board XIAO_ESP32S3 and change the PSRAM option to "OPI PSRAM" to load the program into the board.
+* Files server.py is meant to read the image served on the IP that the XIAO ESP32S3 sends, make the prediction and create two endpoints to load the image and the prediction in an index.html (templates/index.html). 
+* It is still possible to use the "ESP32 Implementation" but use xiao-esp32s3-setup.ino instead.
+
+## Models already trained
+* the files in model-training/models and src/models are models already trainded, the file "birdclassifier95_3.keras" is trained with 500 images from the same Dataset, for val and test I used 100 images each. 

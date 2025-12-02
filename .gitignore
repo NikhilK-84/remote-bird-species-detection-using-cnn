@@ -1,0 +1,4 @@
+model_training/train
+model_training/test
+model_training/val
+model_training/logs

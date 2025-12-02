@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Detección de Aves</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            text-align: center;
+            background: #f4f6f8;
+            color: #333;
+        }
+
+        img {
+            width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+        }
+
+        #prediction {
+            font-size: 24px;
+            margin-top: 15px;
+            color: #2b7a0b;
+        }
+
+        .header {
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Detección Automática de Aves</h1>
+        <p>Datos obtenidos desde ESP32S3 + Modelo entrenado en Python</p>
+    </div>
+    <div>
+        <img id="birdImage" src="" alt="Esperando imagen..." />
+        <div id="prediction">Esperando datos...</div>
+    </div>
+
+    <script>
+        async function updateData() {
+            try {
+                const response = await fetch("/api/latest");
+                const data = await response.json();
+                const imgEl = document.getElementById("birdImage");
+                const predEl = document.getElementById("prediction");
+
+                if (data.prediction) {
+                    predEl.textContent = "Especie: " + data.prediction;
+                    imgEl.src = "/api/latest_image?ts=" + new Date().getTime(); // evita caché
+                }
+            } catch (err) {
+                console.error("Error al actualizar:", err);
+            }
+        }
+
+        setInterval(updateData, 3000);
+        updateData();
+    </script>
+</body>
+
+</html>

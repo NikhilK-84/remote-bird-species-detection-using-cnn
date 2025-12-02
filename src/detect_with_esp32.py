@@ -5,7 +5,7 @@ import csv
 import requests
 from tensorflow.keras.models import load_model
 
-model = load_model('models/birdclassifier95.keras')
+model = load_model('models/birdclassifier95_1.keras')
 
 detections = []
 start_time = time.time()
@@ -32,7 +32,7 @@ def save_to_csv(detections):
         for detection in detections:
             writer.writerow(detection)
 
-url = 'http://192.168.17.149/cam-mid.jpg'
+url = 'http://http://192.168.101.14//cam.jpg'
 
 while True:
     try:
